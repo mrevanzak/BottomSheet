@@ -74,6 +74,11 @@ internal extension BottomSheetView {
             .top,
             self.topPadding
         )
+        // Add side padding
+        .padding(
+            .horizontal,
+            self.configuration.sheetSidePadding
+        )
         // Make the BottomSheet transition via move
         .transition(.move(
             edge: self.isIPadFloatingOrMac ? .top : .bottom
