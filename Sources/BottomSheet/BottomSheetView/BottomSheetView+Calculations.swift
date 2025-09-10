@@ -37,6 +37,16 @@ internal extension BottomSheetView {
         return self.isIPadFloating || self.isMac
     }
     
+    /// Determines if the iPad sheet alignment is top-based (top, topLeading, topTrailing)
+    var isIPadSheetAlignmentTop: Bool {
+        switch self.configuration.iPadSheetAlignment {
+        case .top, .topLeading, .topTrailing:
+            return true
+        default:
+            return false
+        }
+    }
+    
     var isIPadBottom: Bool {
         return self.isIPad && !self.configuration.iPadFloatingSheet
     }
@@ -272,12 +282,7 @@ internal extension BottomSheetView {
         //   - For other alignments: Use normal translation direction
         // For other devices: Use normal translation direction
         if self.isIPadFloatingOrMac {
-            switch self.configuration.iPadSheetAlignment {
-            case .top, .topLeading, .topTrailing:
-                return -value.translation.height
-            default:
-                return value.translation.height
-            }
+            return self.isIPadSheetAlignmentTop ? -value.translation.height : value.translation.height
         } else {
             return value.translation.height
         }

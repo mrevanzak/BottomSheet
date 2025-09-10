@@ -129,7 +129,7 @@ internal struct BottomSheetView<HContent: View, MContent: View>: View {
         // On iPad floating and Mac ignore top safe area, because the BottomSheet moves to the top edge
         .ignoresSafeAreaCompatible(
             .container,
-            edges: self.isIPadFloatingOrMac ? .top : .bottom
+            edges: self.isIPadFloatingOrMac ? (self.isIPadSheetAlignmentTop ? .top : .bottom) : .bottom
         )
     }
 }

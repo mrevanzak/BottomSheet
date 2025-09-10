@@ -57,7 +57,7 @@ internal extension BottomSheetView {
         .frame(
             width: self.width(with: geometry),
             height: self.bottomSheetPosition.isDynamic && self.translation == 0 ? nil : self.height(with: geometry),
-            alignment: self.isIPadFloatingOrMac ? .bottom : .top
+            alignment: self.isIPadFloatingOrMac ? (self.isIPadSheetAlignmentTop ? .bottom : .top) : .top
         )
         // Clip BottomSheet for transition to work correctly for iPad and Mac
         .clipped()
@@ -80,7 +80,7 @@ internal extension BottomSheetView {
         )
         // Make the BottomSheet transition via move
         .transition(.move(
-            edge: self.isIPadFloatingOrMac ? .top : .bottom
+            edge: self.isIPadFloatingOrMac ? (self.isIPadSheetAlignmentTop ? .top : .bottom) : .bottom
         ))
     }
     
@@ -197,7 +197,7 @@ internal extension BottomSheetView {
         // Align content correctly and make it use all available space to fix transition
         .frame(
             maxHeight: self.maxMainContentHeight(with: geometry),
-            alignment: self.isIPadFloatingOrMac ? .bottom : .top
+            alignment: self.isIPadFloatingOrMac ? (self.isIPadSheetAlignmentTop ? .bottom : .top) : .top
         )
         // Clip main content so that it doesn't go beneath the header content
         .clipped()
@@ -213,7 +213,7 @@ internal extension BottomSheetView {
         )
         // Make the main content transition via move
         .transition(.move(
-            edge: self.isIPadFloatingOrMac ? .top : .bottom
+            edge: self.isIPadFloatingOrMac ? (self.isIPadSheetAlignmentTop ? .top : .bottom) : .bottom
         ))
     }
     
@@ -318,7 +318,7 @@ internal extension BottomSheetView {
                 // Only add top padding if no drag indicator
                     .padding(
                         (!self.configuration.isDragIndicatorShown || !self.configuration.isResizable) ||
-                        self.isIPadFloatingOrMac ? .top : []
+                        (self.isIPadFloatingOrMac && self.isIPadSheetAlignmentTop) ? .top : []
                     )
             }
         }
