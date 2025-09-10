@@ -265,4 +265,21 @@ internal extension BottomSheetView {
             $0.height < $1.height
         })
     }
+
+    func getGestureTranslation(for value: DragGesture.Value) -> CGFloat {
+        // For iPad floating and Mac:
+        //   - For top alignments: Reverse translation direction
+        //   - For other alignments: Use normal translation direction
+        // For other devices: Use normal translation direction
+        if self.isIPadFloatingOrMac {
+            switch self.configuration.iPadSheetAlignment {
+            case .top, .topLeading, .topTrailing:
+                return -value.translation.height
+            default:
+                return value.translation.height
+            }
+        } else {
+            return value.translation.height
+        }
+    }
 }
