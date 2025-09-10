@@ -190,8 +190,8 @@ internal extension BottomSheetView {
             // On iPhone landscape use 40% of the width
             return geometry.size.width * 0.4
         } else {
-            // On iPhone portrait or iPad split screen use 100% of the width
-            return geometry.size.width
+            // On iPhone portrait or iPad split screen use 100% of the width minus side padding
+            return geometry.size.width - (2 * self.configuration.sheetSidePadding)
         }
 #endif
     }
