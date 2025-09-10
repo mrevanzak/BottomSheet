@@ -64,5 +64,5 @@ internal class BottomSheetConfiguration: Equatable {
     var sheetWidth: BottomSheetWidth = .platformDefault
     var accountForKeyboardHeight: Bool = false
     var iPadSheetAlignment: Alignment = .bottomLeading
-    var sheetSidePadding: CGFloat = 0.0
+    var sheetSidePadding: EdgeInsets = EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
 }

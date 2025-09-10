@@ -191,7 +191,7 @@ internal extension BottomSheetView {
             return geometry.size.width * 0.4
         } else {
             // On iPhone portrait or iPad split screen use 100% of the width minus side padding
-            return geometry.size.width - (2 * self.configuration.sheetSidePadding)
+            return geometry.size.width - self.configuration.sheetSidePadding.leading - self.configuration.sheetSidePadding.trailing
         }
 #endif
     }
